@@ -41,7 +41,6 @@ export interface StockData {
 export async function getStockData(
   ticker: string = "NVDA"
 ): Promise<StockData[]> {
-  console.log(getEndpoint(ticker));
   const res = await fetch(getEndpoint(ticker), {
     headers: {
       "Content-Type": "application/json",
