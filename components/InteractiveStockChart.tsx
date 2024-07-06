@@ -16,7 +16,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { StockData } from "@/lib/getStockData";
+import { StockData } from "@/lib/get-stock-data";
 
 const chartConfig = {
   price: {
