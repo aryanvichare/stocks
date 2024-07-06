@@ -10,6 +10,11 @@ This project uses the brand new shadcn/ui charts library - https://ui.shadcn.com
 
 <img width="1050" alt="Screenshot 2024-07-06 at 3 24 26 AM" src="https://github.com/aryanvichare/stocks/assets/34843135/627391ef-5c54-4e54-9b3a-1371be31e690">
 
+# Features
+
+- Built with Next.js App Router, Typescript, TailwindCSS, and Shadcn/UI (and latest charting components)
+- Uses React Server Components and Streaming "server-rendered" stock price data from Polygon.io API
+
 # Getting Started
 
 1. Clone this repository to your local machine:
