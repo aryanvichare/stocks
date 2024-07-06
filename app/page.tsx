@@ -5,6 +5,10 @@ import { StockSelector } from "@/components/StockSelector";
 import { Suspense } from "react";
 import { companies } from "@/lib/stock-data";
 import { ErrorBoundary } from "react-error-boundary";
+import { Button, buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
+import GithubIcon from "@/components/icons/GithubIcon";
+import { cn } from "@/lib/utils";
 
 export default async function Home({
   searchParams,
@@ -16,7 +20,22 @@ export default async function Home({
 
   return (
     <div className='min-h-screen pt-6 pb-12 lg:px-12 px-3'>
-      <nav className='w-full flex flex-row justify-end'>
+      <nav className='w-full flex flex-row gap-2 justify-end'>
+        <Link
+          href={"https://github.com/aryanvichare/stocks"}
+          target='_blank'
+          rel='noreferrer'>
+          <div
+            className={cn(
+              buttonVariants({
+                variant: "ghost",
+              }),
+              "h-[40px] w-[40px] px-0"
+            )}>
+            <GithubIcon className='h-[1.2rem] w-[1.2rem]' />
+            <span className='sr-only'>GitHub</span>
+          </div>
+        </Link>
         <ThemeToggle />
       </nav>
       <main className='w-full pt-20 flex flex-col gap-4 mx-auto max-w-screen-lg flex-col items-center'>
