@@ -43,7 +43,7 @@ export default async function Home({
         <ErrorBoundary
           fallback={
             <span className='text-sm text-red-600'>
-              Rate Limit Hit for Polygon.io API 😅 - Please try again later.
+              Error with Polygon.io API 😅 - Please try again later.
             </span>
           }>
           <Suspense

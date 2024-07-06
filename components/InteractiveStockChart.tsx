@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useMemo } from "react";
+import React, { FC, use, useMemo } from "react";
 import {
   CartesianGrid,
   Line,
@@ -51,9 +51,11 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export const InteractiveStockChart: FC<InteractiveStockChartProps> = ({
-  chartData,
+  chartData: stockData,
   ticker,
 }) => {
+  const chartData = use(Promise.resolve(stockData)) as StockData[];
+
   const formattedData = useMemo(
     () =>
       chartData
