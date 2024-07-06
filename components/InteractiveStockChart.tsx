@@ -13,6 +13,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -24,6 +25,7 @@ import {
   ChartTooltipContent,
 } from "./ui/chart";
 import { companies } from "@/lib/stock-data";
+import { TrendingDown, TrendingUp } from "lucide-react";
 
 interface InteractiveStockChartProps {
   chartData: StockData[];
@@ -34,17 +36,17 @@ const chartConfig = {
   priceData: {
     label: "Price Data",
   },
-  open: {
-    label: "Open",
-    color: "hsl(var(--chart-1))",
+  high: {
+    label: "High",
+    color: "hsl(var(--chart-3))",
   },
-  low: {
-    label: "Open",
+  close: {
+    label: "Close",
     color: "hsl(var(--chart-2))",
   },
-  high: {
-    label: "Close",
-    color: "hsl(var(--chart-3))",
+  low: {
+    label: "Low",
+    color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
 
@@ -77,7 +79,27 @@ export const InteractiveStockChart: FC<InteractiveStockChartProps> = ({
 
   const company = companies.find((company) => company.ticker === ticker);
 
-  console.log(formattedData);
+  const percentageChange = useMemo(() => {
+    if (formattedData.length === 0) return 0;
+
+    const currentDate = new Date().getTime();
+    const thirtyDaysAgo = currentDate - 30 * 24 * 60 * 60 * 1000;
+
+    const recentData = formattedData.filter(
+      (item) => item.dateTime >= thirtyDaysAgo
+    );
+
+    if (recentData.length === 0) return 0;
+
+    const firstValue = recentData[0].close;
+    const lastValue = recentData[recentData.length - 1].close;
+
+    console.log(recentData[0], recentData[recentData.length - 1]);
+
+    return ((lastValue - firstValue) / firstValue) * 100;
+  }, [formattedData]);
+
+  const isTrendingUp = percentageChange > 0;
 
   return (
     <Card className='w-full'>
@@ -135,8 +157,15 @@ export const InteractiveStockChart: FC<InteractiveStockChartProps> = ({
                 />
                 <Line
                   type='monotone'
-                  dataKey='open'
-                  stroke={chartConfig.open.color}
+                  dataKey='high'
+                  stroke={chartConfig.high.color}
+                  strokeWidth={2}
+                  dot={false}
+                />
+                <Line
+                  type='monotone'
+                  dataKey='close'
+                  stroke={chartConfig.close.color}
                   strokeWidth={2}
                   dot={false}
                 />
@@ -147,18 +176,37 @@ export const InteractiveStockChart: FC<InteractiveStockChartProps> = ({
                   strokeWidth={2}
                   dot={false}
                 />
-                <Line
-                  type='monotone'
-                  dataKey='high'
-                  stroke={chartConfig.high.color}
-                  strokeWidth={2}
-                  dot={false}
-                />
               </LineChart>
             </ResponsiveContainer>
           </ChartContainer>
         </div>
       </CardContent>
+      <CardFooter className='flex-col items-start gap-2 text-sm'>
+        <div className='font-medium leading-none'>
+          {isTrendingUp ? (
+            <>
+              Trending up by{" "}
+              <span className='text-[#2DB78A]'>
+                {percentageChange.toFixed(2)}%{" "}
+              </span>{" "}
+              this month{" "}
+              <TrendingUp className='inline text-[#2DB78A] h-4 w-4' />
+            </>
+          ) : (
+            <>
+              Trending down by{" "}
+              <span className='text-[#E2366F]'>
+                {percentageChange.toFixed(2)}%{" "}
+              </span>{" "}
+              this month{" "}
+              <TrendingDown className='inline text-[#E2366F] h-4 w-4' />
+            </>
+          )}
+        </div>
+        <div className='leading-none text-muted-foreground'>
+          Showing stock data for the last 3 months
+        </div>
+      </CardFooter>
     </Card>
   );
 };

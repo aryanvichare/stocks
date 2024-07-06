@@ -19,7 +19,7 @@ export default async function Home({
       <nav className='w-full flex flex-row justify-end'>
         <ThemeToggle />
       </nav>
-      <main className='w-full pt-24 flex flex-col gap-4 mx-auto max-w-screen-lg flex-col items-center'>
+      <main className='w-full pt-20 flex flex-col gap-4 mx-auto max-w-screen-lg flex-col items-center'>
         <StockSelector />
         <ErrorBoundary
           fallback={
@@ -29,7 +29,7 @@ export default async function Home({
           }>
           <Suspense
             fallback={
-              <span className='justify-self-center self-center text-sm text-gray-400'>
+              <span className='justify-self-center self-center text-sm text-white'>
                 Fetching price…
               </span>
             }>
