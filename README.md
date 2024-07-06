@@ -43,7 +43,7 @@ This project uses the brand new shadcn/ui charts library - https://ui.shadcn.com
 
 5. Get your API Key from [Polygon.io](https://polygon.io/) and paste it into your .env.local
 
-6. Run the development server::
+6. Run the development server:
 
    ```bash
    npm run dev
