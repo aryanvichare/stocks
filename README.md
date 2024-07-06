@@ -35,7 +35,19 @@ This project uses the brand new shadcn/ui charts library - https://ui.shadcn.com
    npm install
    ```
 
-4. Run the development server::
+4. Copy the .env.example to your .env.local
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+5. Get your API Key from [Polygon.io](https://polygon.io/) and paste it into your .env.local
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+6. Run the development server::
 
    ```bash
    npm run dev
