@@ -24,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className={`antialiased`}>
-      <body className={`font-sans ${fontSans.variable}`}>
+    <html lang='en'>
+      <body className={`antialiased font-sans ${fontSans.variable}`}>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'
