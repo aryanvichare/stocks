@@ -3,11 +3,6 @@ interface Company {
   ticker: string;
 }
 
-interface Company {
-  name: string;
-  ticker: string;
-}
-
 export const companies: Company[] = [
   { name: "Nvidia Corporation", ticker: "NVDA" },
   { name: "Apple Inc.", ticker: "AAPL" },
