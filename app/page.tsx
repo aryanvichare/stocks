@@ -10,13 +10,13 @@ import Link from "next/link";
 import GithubIcon from "@/components/icons/GithubIcon";
 import { cn } from "@/lib/utils";
 
-export default async function Home({
+export default function Home({
   searchParams,
 }: {
   searchParams: { ticker?: string };
 }) {
   const ticker = searchParams.ticker || companies[0].ticker;
-  const stockData = await getStockData(ticker);
+  const stockData = getStockData(ticker);
 
   return (
     <div className='min-h-screen pt-6 pb-12 lg:px-12 px-3'>

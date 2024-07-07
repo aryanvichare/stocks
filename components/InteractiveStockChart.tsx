@@ -28,7 +28,7 @@ import { companies } from "@/lib/stock-data";
 import { TrendingDown, TrendingUp } from "lucide-react";
 
 interface InteractiveStockChartProps {
-  chartData: StockData[];
+  chartData: Promise<StockData[]>;
   ticker: string;
 }
 
@@ -54,7 +54,7 @@ export const InteractiveStockChart: FC<InteractiveStockChartProps> = ({
   chartData: stockData,
   ticker,
 }) => {
-  const chartData = use(Promise.resolve(stockData)) as StockData[];
+  const chartData = use(stockData);
 
   const formattedData = useMemo(
     () =>
